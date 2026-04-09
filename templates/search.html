@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-success mb-3">Search Encrypted Data</h5>
+        <p class="small text-muted mb-4">
+          Search by keyword using order-revealing encryption tokens. Behavioral IDS monitors abusive patterns.
+        </p>
+        <form method="post" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label">Keyword</label>
+            <input type="text" name="keyword" value="{{ keyword }}" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-success">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% if results is not none %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm cyber-card">
+        <div class="card-body">
+          <h6 class="text-uppercase text-muted small mb-2">Search Results</h6>
+          {% if results %}
+            <ul class="list-group list-group-flush small">
+              {% for doc in results %}
+                <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+                  <span>{{ doc.original_filename }} <span class="text-muted">({{ doc.doc_id }})</span></span>
+                  <div class="d-flex gap-2">
+                    <a href="{{ url_for('view_document', doc_id=doc.doc_id) }}" class="btn btn-outline-primary btn-sm">View</a>
+                    <a href="{{ url_for('view_encrypted', doc_id=doc.doc_id) }}" class="btn btn-outline-info btn-sm">View Encrypted</a>
+                    <a href="{{ url_for('download_document', doc_id=doc.doc_id) }}" class="btn btn-outline-success btn-sm">Download</a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted small mb-0">No documents matched this keyword.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
+

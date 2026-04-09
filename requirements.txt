@@ -1,0 +1,9 @@
+# SecureVault - Hybrid ORE with Zero-Trust & Behavioral IDS
+# Python 3.x
+
+cryptography>=41.0.0
+bcrypt>=4.0.0
+pyotp>=2.9.0
+qrcode[pil]>=7.4.2
+gspread>=6.0.0
+oauth2client>=4.1.3

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-success mb-1">&#11015; Download</h5>
+        <p class="text-light small mb-2">{{ doc.original_filename }} <span class="text-muted">({{ doc.doc_id }})</span></p>
+        <p class="small text-muted mb-4">
+          Enter your authenticator code to decrypt and download this file.
+        </p>
+
+        {% if needs_totp_setup %}
+          <div class="alert alert-warning py-2 small">
+            Authenticator is not configured yet.
+            <a class="link-dark fw-semibold" href="{{ url_for('authenticator_setup', next='dashboard') }}">Scan QR and activate now</a>.
+          </div>
+        {% endif %}
+
+        <form method="post" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label text-light">Authenticator Code</label>
+            <input
+              type="text"
+              name="totp_code"
+              class="form-control"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="6"
+              placeholder="Enter 6-digit TOTP code"
+              required
+              {% if blocked_remaining > 0 %}disabled{% endif %}
+            >
+            <div class="form-text text-muted">
+              Attempts used: {{ failed_attempts }}/{{ max_attempts }}
+            </div>
+          </div>
+          {% if blocked_remaining > 0 %}
+            <div class="alert alert-danger py-2 small">
+              TOTP failed 3 times. Try again after 2 minutes.
+            </div>
+          {% endif %}
+          <button type="submit" class="btn btn-success" {% if blocked_remaining > 0 %}disabled{% endif %}>Verify &amp; Download</button>
+          <a href="{{ url_for('documents') }}" class="btn btn-outline-secondary ms-2">Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

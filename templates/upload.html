@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-success mb-3">Upload Encrypted File</h5>
+        <p class="small text-muted mb-4">
+          Files are encrypted with AES-256 before storage. Plaintext never touches disk; only ciphertext is persisted.
+        </p>
+        <form method="post" enctype="multipart/form-data" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label text-light">Choose File</label>
+            <input type="file" name="file" class="form-control" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.gif,.webp" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-light">Keyword for ORE search (optional)</label>
+            <input type="text" name="keyword" class="form-control" placeholder="e.g. project, finance">
+          </div>
+          <button type="submit" class="btn btn-success">Encrypt &amp; Store</button>
+          <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-5 col-xl-4">
+    <div class="card shadow-lg cyber-card security-panel">
+      <div class="card-body p-4">
+        <p class="text-uppercase security-kicker mb-2">Admin Verification</p>
+        <h4 class="text-light mb-2">Second Lock</h4>
+        <p class="text-muted small mb-4">
+          Password accepted for <strong>{{ pending_user }}</strong>.
+          {% if is_configured %}
+            Enter the current TOTP code to unlock admin security controls.
+          {% else %}
+            Scan the authenticator secret below, then enter the first TOTP code to finish admin setup.
+          {% endif %}
+        </p>
+        {% if not is_configured %}
+          <div class="text-center mb-4">
+            {% if qr_data_uri %}
+              <img src="{{ qr_data_uri }}" alt="Admin TOTP QR code" class="img-fluid rounded bg-white p-2 mb-3" style="max-width: 220px;">
+            {% endif %}
+            <div class="small text-muted mb-1">Manual secret</div>
+            <code>{{ secret }}</code>
+          </div>
+        {% endif %}
+        {% if lock_remaining %}
+          <div class="alert alert-danger small">
+            Too many failed attempts. Try again in {{ lock_remaining }} seconds.
+          </div>
+        {% endif %}
+        <form method="post" novalidate autocomplete="off">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label text-light">Authenticator Code</label>
+            <input type="text" name="totp_code" class="form-control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required {% if lock_remaining %}disabled{% endif %}>
+          </div>
+          <button type="submit" class="btn btn-success w-100" {% if lock_remaining %}disabled{% endif %}>Verify TOTP</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 col-lg-8">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-info mb-1">&#128274; View Encrypted</h5>
+        <p class="text-light small mb-2">{{ original_filename }} <span class="text-muted">({{ doc_id }})</span></p>
+        <p class="small text-muted mb-3">
+          This page shows encrypted payload only. No decryption is performed.
+        </p>
+
+        <h6 class="text-uppercase text-muted small mb-2">Ciphertext</h6>
+        <pre class="bg-black text-info p-3 rounded small mb-0" style="max-height: 520px; overflow: auto; white-space: pre-wrap; word-break: break-all;">{{ ciphertext }}</pre>
+
+        <div class="mt-3">
+          <a href="{{ url_for('view_document', doc_id=doc_id) }}" class="btn btn-outline-success btn-sm">Decrypt &amp; View</a>
+          <a href="{{ url_for('download_document', doc_id=doc_id) }}" class="btn btn-outline-secondary btn-sm ms-2">Download</a>
+          <a href="{{ url_for('documents') }}" class="btn btn-outline-light btn-sm ms-2">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

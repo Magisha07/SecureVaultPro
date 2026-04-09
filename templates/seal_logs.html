@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+  <div>
+    <p class="text-uppercase security-kicker mb-2">SEAL</p>
+    <h3 class="text-light mb-1">Tamper-Proof Audit Logs</h3>
+    <p class="text-muted small mb-0">Click a status badge to inspect log integrity and raw data.</p>
+  </div>
+  <a href="{{ url_for('security_dashboard') }}" class="btn btn-outline-light btn-sm">Back to Security Dashboard</a>
+</div>
+
+<div class="card shadow-lg cyber-card security-panel">
+  <div class="card-body p-4">
+    {% if logs %}
+      <div class="table-responsive">
+        <table class="table table-dark table-striped align-middle mb-0">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Action</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for log in logs %}
+              <tr>
+                <td>{{ log.user }}</td>
+                <td>{{ log.action }}</td>
+                <td>{{ log.timestamp }}</td>
+                <td>
+                  {% if log.get('id') is not none %}
+                    <a href="{{ url_for('seal_detail', log_id=log.get('id')) }}" class="badge text-decoration-none {% if log.status == 'FAILED' %}bg-danger{% elif log.status == 'ALERT' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                      {{ log.status }}
+                    </a>
+                  {% else %}
+                    <span class="badge {% if log.status == 'FAILED' %}bg-danger{% elif log.status == 'ALERT' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                      {{ log.status }}
+                    </span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="text-muted mb-0">No SEAL logs recorded.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

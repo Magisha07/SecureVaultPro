@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+  <div>
+    <p class="text-uppercase security-kicker mb-2">SEAL Detail</p>
+    <h3 class="text-light mb-1">Log #{{ log.id }}</h3>
+    <p class="text-muted small mb-0">Integrity verification is recomputed from the stored HMAC signature.</p>
+  </div>
+  <a href="{{ url_for('seal_logs') }}" class="btn btn-outline-light btn-sm">Back to SEAL Logs</a>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="card shadow-lg cyber-card security-panel h-100">
+      <div class="card-body p-4">
+        <div class="mb-3">
+          <span class="badge {% if integrity_ok %}bg-success{% else %}bg-danger{% endif %}">
+            {{ "Integrity Verified ✅" if integrity_ok else "Tampered ❌" }}
+          </span>
+        </div>
+        <dl class="row small mb-0">
+          <dt class="col-sm-4">User</dt>
+          <dd class="col-sm-8">{{ log.user }}</dd>
+          <dt class="col-sm-4">Action</dt>
+          <dd class="col-sm-8">{{ log.action }}</dd>
+          <dt class="col-sm-4">Timestamp</dt>
+          <dd class="col-sm-8">{{ log.timestamp }}</dd>
+          <dt class="col-sm-4">Status</dt>
+          <dd class="col-sm-8">{{ log.status }}</dd>
+          <dt class="col-sm-4">Hash (HMAC)</dt>
+          <dd class="col-sm-8"><code class="small">{{ log.hash }}</code></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card shadow-lg cyber-card security-panel h-100">
+      <div class="card-body p-4">
+        <h5 class="text-light mb-3">Raw Log Data</h5>
+        <pre class="raw-log mb-0">{{ raw_log_data | tojson(indent=2) }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

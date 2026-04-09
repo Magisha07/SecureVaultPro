@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-center mb-1 text-success">First Lock</h5>
+        <p class="text-light text-center small mb-3">Credential Authentication</p>
+        <p class="text-muted small text-center mb-4">
+          Enter your username and password to unlock the first security layer.
+        </p>
+        <form method="post" novalidate autocomplete="off">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label text-light">Username</label>
+            <input type="text" name="username" class="form-control" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-light">Password</label>
+            <input type="password" name="password" class="form-control" autocomplete="off" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Login</button>
+        </form>
+        <p class="mt-3 mb-0 text-center small text-light">
+          No account yet?
+          <a href="{{ url_for('register') }}" class="link-success">Register here</a>.
+        </p>
+        <p class="mt-2 mb-0 text-center small text-light">
+          Forgot password?
+          <a href="{{ url_for('forgot_password') }}" class="link-success">Reset here</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

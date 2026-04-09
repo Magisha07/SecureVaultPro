@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body p-4">
+        <h5 class="card-title text-success mb-1">Authenticator Setup</h5>
+        <p class="text-light small mb-3">Scan this QR code with Google Authenticator, Microsoft Authenticator, or Authy.</p>
+        <p class="small text-muted mb-3">
+          After scanning, enter the current 6-digit code from your app to activate TOTP for decryption.
+        </p>
+
+        {% if qr_data_uri %}
+          <div class="text-center mb-3">
+            <img src="{{ qr_data_uri }}" alt="TOTP QR Code" class="img-fluid rounded bg-white p-2" style="max-width: 260px;">
+          </div>
+        {% else %}
+          <div class="alert alert-warning py-2 small">
+            QR generation package is not installed. Use the manual setup key below in your Authenticator app.
+          </div>
+        {% endif %}
+
+        <div class="mb-3">
+          <label class="form-label text-light">Manual Setup Key</label>
+          <input type="text" class="form-control" value="{{ secret }}" readonly>
+          <div class="form-text text-muted">Use this key if you cannot scan the QR code.</div>
+        </div>
+
+        <form method="post" novalidate class="mb-2">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="mb-3">
+            <label class="form-label text-light">Enter 6-digit Authenticator Code</label>
+            <input type="text" name="totp_code" class="form-control" inputmode="numeric" pattern="[0-9]*" maxlength="6" required>
+          </div>
+          <button type="submit" class="btn btn-success">Verify and Activate</button>
+          <a href="{{ url_for(next_target) }}" class="btn btn-outline-secondary ms-2">Back</a>
+        </form>
+
+        {% if is_configured %}
+          <p class="small text-success mb-0">Authenticator is active.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

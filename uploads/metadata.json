@@ -1,0 +1,73 @@
+{
+  "records": {
+    "doc_1": {
+      "doc_id": "doc_1",
+      "original_filename": "sample_report.txt",
+      "owner": "user1",
+      "file_path": "C:\\Users\\Magisha G\\Documents\\SecurVaultpro\\uploads\\doc_1.enc",
+      "nonce_b64": "pm+nLwEfQ9ftQmGV",
+      "ore_token_b64": "crRv7x5V0mTqWo9RL7Wq6naQCsCfaS45SUNF7kDXRBI=",
+      "created_at": 1775313696
+    },
+    "doc_9": {
+      "doc_id": "doc_9",
+      "original_filename": "cyber_class.txt",
+      "file_type": "text/plain",
+      "owner": "Madhu",
+      "file_path": "C:\\Users\\Magisha G\\Documents\\SecurVaultpro\\uploads\\doc_9.enc",
+      "nonce_b64": "uOIVIVv6z7XNopdv",
+      "ore_token_b64": "ELNN6tsoppzM1E2kyHnwLXeAuf48cAWAm7yQ4+9d7gg=",
+      "ore_tokens_b64": [
+        "ELNN6tsoppzM1E2kyHnwLXeAuf48cAWAm7yQ4+9d7gg=",
+        "MoSt/IVetj2x95iRuuWKu6o58BFVIdu/qWeX6mRKhGI="
+      ],
+      "created_at": 1775553597
+    },
+    "doc_10": {
+      "doc_id": "doc_10",
+      "original_filename": "III_CSE_name_list.docx",
+      "file_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "owner": "Madhu",
+      "file_path": "C:\\Users\\Magisha G\\Documents\\SecurVaultpro\\uploads\\doc_10.enc",
+      "nonce_b64": "ad/K5hPKhKVipHgd",
+      "ore_token_b64": "O2FWbHAP6UiBRZkleCqmhdPnZYJXPXVnkmRLbuB6x50=",
+      "ore_tokens_b64": [
+        "O2FWbHAP6UiBRZkleCqmhdPnZYJXPXVnkmRLbuB6x50=",
+        "+do0d9GPLfkzDaICtfD7UdkITL4386gJLsOcBdDnH9Q=",
+        "xh5cd8E23IEoZwCsC0SkQmq8acvQ0pVqr7aef1UgwzY=",
+        "qs5DJaFq+gxZwp+n/OjdRe2KMzMotL8Hu8U+hi1ytjs="
+      ],
+      "created_at": 1775553678
+    },
+    "doc_11": {
+      "doc_id": "doc_11",
+      "original_filename": "Magi_BE_CSE.pdf",
+      "file_type": "application/pdf",
+      "owner": "Madhu",
+      "file_path": "C:\\Users\\Magisha G\\Documents\\SecurVaultpro\\uploads\\doc_11.enc",
+      "nonce_b64": "As+5wmoaSAuigKhm",
+      "ore_token_b64": "TT76mTnL90LURvAhiGvDX66ek4UhT2atqysRZ0fdI2E=",
+      "ore_tokens_b64": [
+        "TT76mTnL90LURvAhiGvDX66ek4UhT2atqysRZ0fdI2E=",
+        "tXC4MCL0S4HZGRFzxlvgQRr31JkUIlzQxD7n1Y2epkY=",
+        "+do0d9GPLfkzDaICtfD7UdkITL4386gJLsOcBdDnH9Q="
+      ],
+      "created_at": 1775553733
+    },
+    "doc_12": {
+      "doc_id": "doc_12",
+      "original_filename": "signn-magii.jpeg",
+      "file_type": "image/jpeg",
+      "owner": "Madhu",
+      "file_path": "C:\\Users\\Magisha G\\Documents\\SecurVaultpro\\uploads\\doc_12.enc",
+      "nonce_b64": "hBtdsNGgiWTl02m+",
+      "ore_token_b64": "qp+B6E0SVPV4HU4S28ZuDBH24PPMPtpYQg4t6oV0tRU=",
+      "ore_tokens_b64": [
+        "qp+B6E0SVPV4HU4S28ZuDBH24PPMPtpYQg4t6oV0tRU=",
+        "CAFXVfGYICk2zQV5/bMlp0hQej7Cj6zEOF7UIyi2G28="
+      ],
+      "created_at": 1775553790
+    }
+  },
+  "updated_at": 1775553790
+}

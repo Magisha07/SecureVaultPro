@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col-12">
+    <h3 class="mb-1">Welcome, {{ current_user }}.</h3>
+    <p class="text-muted small">Encrypted storage with zero-trust retrieval and behavioral IDS.</p>
+  </div>
+</div>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm cyber-card">
+      <div class="card-body">
+        <h5 class="card-title text-success">Upload Encrypted Data</h5>
+        <p class="card-text small text-muted">Encrypt documents with per-user keys managed by the KMS.</p>
+        <a href="{{ url_for('upload') }}" class="btn btn-outline-success btn-sm">Go to Upload</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm cyber-card">
+      <div class="card-body">
+        <h5 class="card-title text-success">Search via ORE</h5>
+        <p class="card-text small text-muted">Use order-revealing tokens to search without decrypting stored data.</p>
+        <a href="{{ url_for('search') }}" class="btn btn-outline-success btn-sm">Search Documents</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm cyber-card">
+      <div class="card-body">
+        <h5 class="card-title text-success">TOTP-Protected View</h5>
+        <p class="card-text small text-muted">Decrypt files temporarily and preview safely after TOTP verification.</p>
+        <a href="{{ url_for('documents') }}" class="btn btn-success btn-sm">Open Your Documents</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row g-3 mt-3">
+  <div class="col-md-6">
+    <div class="card h-100 shadow-sm cyber-card">
+      <div class="card-body">
+        <h6 class="text-uppercase text-muted small mb-2">Your Documents</h6>
+        {% if my_docs %}
+          <ul class="list-group list-group-flush small">
+            {% for doc in my_docs %}
+              <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center gap-2">
+                <span>
+                  {{ doc.original_filename }}
+                  <span class="text-muted">({{ doc.doc_id }})</span>
+                </span>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-secondary">encrypted</span>
+                  <a
+                    href="{{ url_for('view_encrypted', doc_id=doc.doc_id) }}"
+                    class="btn btn-outline-info btn-sm"
+                    data-bs-toggle="tooltip"
+                    title="View encrypted data"
+                  >
+                    &#128274; View Encrypted
+                  </a>
+                  <a
+                    href="{{ url_for('download_document', doc_id=doc.doc_id) }}"
+                    class="btn btn-outline-success btn-sm"
+                    data-bs-toggle="tooltip"
+                    title="Download file after verification"
+                  >
+                    &#11015; Download
+                  </a>
+                  <form method="post" action="{{ url_for('delete_file', doc_id=doc.doc_id) }}" class="d-inline">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-danger btn-sm"
+                      data-bs-toggle="tooltip"
+                      title="Delete this file"
+                    >
+                      &#128465; Delete
+                    </button>
+                  </form>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted small mb-0">No encrypted documents yet. Upload your first file.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card h-100 shadow-sm cyber-card">
+      <div class="card-body">
+        <h6 class="text-uppercase text-muted small mb-2">Security Telemetry</h6>
+        <p class="mb-1 small">Encrypted log entries (SEAL):
+          <span class="fw-semibold text-success">{{ log_count }}</span>
+        </p>
+        {% if is_admin %}
+          <p class="small text-muted mb-2">As an admin you can inspect encrypted logs by event type.</p>
+          <a href="{{ url_for('logs') }}" class="btn btn-outline-success btn-sm">View Logs</a>
+        {% else %}
+          <p class="small text-muted mb-0">Contact an administrator to inspect SEAL logs.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.bootstrap) {
+      return;
+    }
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+      new bootstrap.Tooltip(el);
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <h4 class="mb-1">Your Documents</h4>
+        <p class="text-muted small mb-0">Preview supported files in browser, download Office documents after TOTP, or remove stored files.</p>
+      </div>
+      <a href="{{ url_for('upload') }}" class="btn btn-success btn-sm">Upload New File</a>
+    </div>
+
+    <div class="card shadow-lg cyber-card">
+      <div class="card-body">
+        {% if docs %}
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Document ID</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for doc in docs %}
+                  <tr>
+                    <td>{{ doc.original_filename }}</td>
+                    <td><span class="text-muted">{{ doc.doc_id }}</span></td>
+                    <td class="text-end">
+                      <div class="d-flex justify-content-end flex-wrap gap-2">
+                        <a href="{{ url_for('view_encrypted', doc_id=doc.doc_id) }}" class="btn btn-outline-info btn-sm">&#128274; View Encrypted</a>
+                        <a href="{{ url_for('view_document', doc_id=doc.doc_id) }}" class="btn btn-outline-primary btn-sm">&#128065; View</a>
+                        <a href="{{ url_for('download_document', doc_id=doc.doc_id) }}" class="btn btn-outline-success btn-sm">&#11015; Download</a>
+                        <form method="post" action="{{ url_for('delete_file', doc_id=doc.doc_id) }}" class="d-inline">
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                          <button type="submit" class="btn btn-outline-danger btn-sm">&#128465; Delete</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="text-muted small mb-0">No encrypted documents yet. Upload your first file.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

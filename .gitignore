@@ -1,0 +1,6 @@
+securevault-api-key.json
+.env
+__pycache__/
+*.pyc
+uploads/
+instance/
