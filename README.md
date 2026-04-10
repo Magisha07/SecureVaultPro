@@ -98,3 +98,8 @@ This project demonstrates a secure file storage system with:
 - Intrusion detection
 - Secure logging
 
+---
+
+REPORT
+
+[SecureVault.pdf](https://github.com/user-attachments/files/26623539/SecureVault.pdf)
