@@ -20,37 +20,54 @@ SecureVaultPro is a Zero-Trust secure file storage system that ensures encrypted
 ## 🖥️ Application Screenshots
 
 ### 🏠 User Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](<img width="1378" height="587" alt="image" src="https://github.com/user-attachments/assets/b1f9ff19-8ecd-40a4-8811-0b56542fa9df" />)
 
 ---
 
 ### 📤 File Upload (AES Encryption)
-![Upload](screenshots/upload.png)
+![Upload](<img width="1369" height="523" alt="image" src="https://github.com/user-attachments/assets/cd94f25f-e4a5-4b48-ba17-ed77115185ab" />)
 
 ---
 
 ### 🔍 Search (ORE Enabled)
-![Search](screenshots/search.png)
+![Search](<img width="1348" height="488" alt="image" src="https://github.com/user-attachments/assets/0826edfd-5dbc-4320-a215-54244d7f1d83" />)
 
 ---
 
 ### 📁 Documents Page
-![Documents](screenshots/documents.png)
+![Documents](<img width="1381" height="395" alt="image" src="https://github.com/user-attachments/assets/1be7fc61-955f-443f-a418-0d9b2af8aa97" />)
 
 ---
 
 ### 🔐 View Encrypted Data
-![Encrypted](screenshots/encrypted.png)
+![Encrypted](<img width="1231" height="549" alt="image" src="https://github.com/user-attachments/assets/7493d138-7f84-4d9a-aeee-c13ed2a74b4f" />)
 
 ---
 
 ### 🔑 TOTP Authentication
-![TOTP](screenshots/totp.png)
+![TOTP](<img width="1242" height="545" alt="image" src="https://github.com/user-attachments/assets/d703961f-2065-4941-bc54-2c317f06488c" />)
+
+---
+
+### 👁 Decrypt & View (TOTP Protected)
+![View](<img width="1193" height="373" alt="image" src="https://github.com/user-attachments/assets/079f3a6f-6261-482b-b313-66927d980eef" />)
+
+---
+
+### ⬇ Download (TOTP Protected)
+![Download](<img width="1375" height="375" alt="image" src="https://github.com/user-attachments/assets/6d8765c8-8878-436d-9afb-7a6ec5399422" />)
 
 ---
 
 ### 🛡 Admin Security Dashboard (IDS + SEAL)
-![Admin](screenshots/admin.png)
+
+#### 🚨 IDS (Intrusion Detection System)
+![IDS](<img width="1597" height="610" alt="image" src="https://github.com/user-attachments/assets/655356f4-2152-44ac-b329-33aa6fb0de17" />)
+
+---
+
+#### 🧾 SEAL Logs (Secure Logging)
+![SEAL]((<img width="1579" height="770" alt="image" src="https://github.com/user-attachments/assets/f9fb7068-2384-4d34-8817-2f0b81801289" />)
 
 ---
 
@@ -81,8 +98,3 @@ This project demonstrates a secure file storage system with:
 - Intrusion detection
 - Secure logging
 
----
-
-## 📌 Project Type
-
-Cybersecurity | Final Year Project | Zero Trust Security Model
